@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import Home from "../slideshow/Home";
+// import Home from "../slideshow/Home";
 
 
 class Landing extends Component {
