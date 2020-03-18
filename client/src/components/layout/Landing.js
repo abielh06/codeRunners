@@ -8,11 +8,10 @@ class Landing extends Component {
     return (
       
       <div style={{ height: "100vh" }} className="container valign-wrapper" style={{ backgroundColor: "rgb(235, 120, 26)" }} >
-        
         <div className="row">
           <div className="col s12 center-align">
             <h4>
-              <b>Welcome to codeRunners connect with fellow bootcampers</b>{" "}
+              <b>Welcome to codeRunners Forum connect with fellow bootcampers</b>{" "}
               <span style={{ fontFamily: "monospace" }}></span> 
             </h4>
             <p className="flow-text grey-text text-darken-1">

@@ -3,6 +3,9 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const passport = require("passport");
 const users = require("./routes/api/users");
+require("./models/Post");
+require("./models/Comment");
+
 const app = express();
 // Bodyparser middleware
 app.use(
@@ -13,6 +16,7 @@ app.use(
 app.use(bodyParser.json());
 // DB Config
 const db = require("./config/keys").mongoURI;
+
 // Connect to MongoDB
 mongoose
   .connect(
@@ -28,6 +32,20 @@ app.use(passport.initialize());
 require("./config/passport")(passport);
 // Routes
 app.use("/api/users", users);
+
+require('./routes/api/posts')(app);
+require('./routes/api/comments')(app);
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
+}
+  // const path = require('path');
+  // app.get('*', (req,res) => {
+  //     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
+  // })
+
+
+
 
 
 

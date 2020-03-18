@@ -7,7 +7,8 @@ const PostSchema = new Schema ({
     postId: {type: String}
 });
 
-mongoose.model("posts", PostSchema)
+var Post = mongoose.model("Post", PostSchema)
 
+module.exports = Post;
 
 
