@@ -2,12 +2,13 @@ import React from 'react';
 import './postStyle.css';
 
 const Post = (props) => (
-  <div className="panel panel-default post-body">
+  <div className="panel panel-default">
     <div className="panel-body">
+    { console.log(props.postBody, "this is the display")}
       {
-        props.postBody.map((postPart, idx) => (
-          <div key={idx}>{postPart}</div>
-        ))
+       
+          <div key={props.key}>{props.postBody}</div>
+        
       }
     </div>
   </div>

@@ -5,49 +5,71 @@ import Post from "../post/post";
 import API from "../../utils/Api";
 
 class Dashboard extends Component {
-  
-  
-  state = {
-    posts: [],
-    search: "",
-    results: ""
-   }
 
-  handlePostEditorInputChange=(ev) => {
-     const {name, value} = ev.target
+
+  state = {
+    forum: [],
+    search: ""
+  }
+
+  handlePostEditorInputChange = (ev) => {
+    const { name, value } = ev.target
     this.setState({
       [name]: ev.target.value
     });
   }
 
-  createPost=(event)=> {
-      alert("clicked")
-      console.log(this.state.search, " test")
-      let newForum = {
-        body: this.state.search
-      }
-      API.createForum(newForum).then(function(response){
-             this.setState({
-               results: response
-             })
+  refresh = () => {
+    var id = localStorage.getItem("jwtToken").split("|")[1]
+    if (id !== undefined) {
+
+      console.log(id + "Testing the id")
+      API.getAllforumsByID(id).then((response) => {
+
+        console.log("users ID", response.data);
+        if (response !== null) {
+          
+          this.setState({
+            forum: response.data
+          })
+          console.log("post: ", this.state.forum);
+        }
+
       })
-  //   this.props.addPost(this.state.newPostBody);
-  //   this.setState({
-  //     newPostBody: '',
-  //   });
+    }
+
   }
 
-  // addPost(postBody) {
-  //   const postToSave = {postBody};
-  //   this.databaseRef.push().set(postToSave);
-  // }
+  componentDidMount = () => {
+    this.refresh()
+
+  }
+
+  createPost = (event) => {
+    // alert("clicked")
+    // console.log(this.state.search, " test")
+    var id = localStorage.getItem("jwtToken").split("|")[1]
+    if (id != undefined) {
+
+      let newForum = {
+        body: this.state.search,
+        userId: id
+      };
+
+      var test = API.createForum(newForum);
+      console.log(test + "the response");
+    }
+    this.refresh()
+
+  }
+
 
   updateLocalState(response) {
-    const posts = this.state.posts;
+    const forum = this.state.forum;
     const brokenDownPost = response.postBody.split(/[\r\n]/g);
-    posts.push(brokenDownPost);
+    forum.push(brokenDownPost);
     this.setState({
-      posts: posts
+      forum: forum
     });
   }
 
@@ -56,21 +78,12 @@ class Dashboard extends Component {
     return (
       <div style={{ position: "relative", width: "100%", height: "120vh" }} className="container-fluid">
         <Home style={{ position: "absolute", zIndex: "1" }} />
-        
         <div>
-        {
-          this.state.posts.map((postBody, idx) => {
-            return (
-              <Post key={idx} postBody={postBody}/>
-            )
-          })
-        }
-        <Forum search={this.state.search}  handlePostEditorInputChange={this.handlePostEditorInputChange}  createPost={this.createPost}  />
-      </div>
-        
+          <Forum updateLocalState={this.state.forum} search={this.state.search} handlePostEditorInputChange={this.handlePostEditorInputChange} createPost={this.createPost} />
+        </div>
       </div>
     );
   }
 }
 
-export default (Dashboard)
+export default Dashboard

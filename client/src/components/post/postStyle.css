@@ -1,5 +1,8 @@
 .post-body {
-    margin: 1em 20%;
+     
+    position: absolute;
+    z-index: 3;
+    margin-top: 600px;
   }
   
   @media(max-width: 900px) {

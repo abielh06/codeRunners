@@ -49,11 +49,24 @@ module.exports = (app) => {
   });
 
   app.post(`/api/post`, async (req, res) => {
-      console.log(req.body)
+      // console.log(req.body)
       db.Post.create(req.body).then(function(data){
-          res.send(req.body.body)
+        // console.log("inside create", data.body)
+          // res.send(data.body);
+          var object = {post: data.body};
+          res.json(object);
       });
     
+  })
+  app.get('/api/post/:id', async (req, res) =>{
+    console.log(req.params.id)
+    db.Post.find({userId:  req.params.id }).then(function (response){
+      console.log(response);
+      
+      res.json(response)
+    }).catch(function (error){
+      res.json(null)
+    })
   })
 
   app.put(`/api/post/:id`, async (req, res) => {
