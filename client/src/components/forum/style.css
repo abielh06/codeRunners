@@ -1,0 +1,23 @@
+.post-editor {
+   width: 80%;
+  height: 6vh;
+    position: absolute;
+    z-index: 2;
+    background-color: azure;
+  }
+  
+  .post-editor-button {
+    float: right;
+    margin-top: 1em;
+  }
+  
+  
+  @media(max-width: 900px) {
+    .post-editor {
+      margin: 1em;
+    }
+  
+    .post-body {
+      margin: 1em;
+    }
+  }

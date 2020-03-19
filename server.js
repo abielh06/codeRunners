@@ -4,6 +4,9 @@ const bodyParser = require("body-parser");
 const path = require("path");
 const passport = require("passport");
 const users = require("./routes/api/users");
+require("./models/Post");
+require("./models/Comment");
+
 const app = express();
 // Bodyparser middleware
 app.use(
@@ -14,6 +17,7 @@ app.use(
 app.use(bodyParser.json());
 // DB Config
 const db = require("./config/keys").mongoURI;
+
 // Connect to MongoDB
 mongoose
   .connect(
@@ -30,15 +34,13 @@ require("./config/passport")(passport);
 // Routes
 app.use("/api/users", users);
 
-// Serve static assets if in production
-if(process.env.NODE_ENV === "production") {
-// Set static folder
-app.use(express.static("client/build"));
+require('./routes/api/posts')(app);
+require('./routes/api/comments')(app);
 
-app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
-}); 
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
 }
+ 
 
 const port = process.env.PORT || 5000; // process.env.port is Heroku's port if you choose to deploy the app there
 app.listen(port, () => console.log(`Server running on port ${port} !`));

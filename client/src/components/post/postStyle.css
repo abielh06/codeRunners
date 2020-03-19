@@ -1,0 +1,12 @@
+.post-body {
+     
+    position: absolute;
+    z-index: 3;
+    margin-top: 600px;
+  }
+  
+  @media(max-width: 900px) {
+    .post-body {
+      margin: 1em;
+    }
+  }
