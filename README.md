@@ -1,4 +1,4 @@
--Project link: *heroku link goes here*
+[codeRunners Link!](https://serene-spire-69791.herokuapp.com)
 
 Summary:
 
@@ -16,26 +16,28 @@ Home Page:
 
 Once a new topic is posted, each person logged into codeRunners who wish to comment on that post (or a previous one) by clicking on the text. A text prompt will pop up for the comment for the user to write what they wish. 
 
-Technologies Used:
+Main Technologies & Packages used:
 
-Visual Studio Code
-Node
-Bootstrap
-React
+Visual Studio Code,
+Node,
+Bootstrap,
+React,
+Redux,
+React-Background-Slideshow
+Express,
+MongoDB,
+Mongoose,
+Body-Parser,
+Path,
+Jwt
 
-Node Packages:
-
-Passport
-Express
-MongoDB
-Path
-Body-parser
+Deployed by HEROKU
 
 Developers involved:
 
-Abiel Hailemariam
-Christopher Teodoro
-Nick Macon
-=======
+- Abiel Hailemariam
+- Christopher Teodoro
+- Nick Macon
 
-codeRunners
+
+# **_codeRunners!_**
