@@ -1,5 +1,7 @@
 [codeRunners Link!](https://serene-spire-69791.herokuapp.com)
 
+![img1](https://user-images.githubusercontent.com/55037624/77044499-8b80ca00-698d-11ea-8ced-c450cf9621dd.gif)
+
 Summary:
 
 codeRunners is a social media application built for past and present students of the UTSA Coding Bootcamp. This social media platform acts to function as a primary hub for students to post class-related questions and/or information primarily related to the following:
